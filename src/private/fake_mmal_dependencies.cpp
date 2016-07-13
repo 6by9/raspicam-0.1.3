@@ -393,3 +393,5 @@ void mmal_buffer_header_release(MMAL_BUFFER_HEADER_T *header){}
  * @return length (in elements) of the queue.
  */
 unsigned int mmal_queue_length(MMAL_QUEUE_T *queue){}
+
+int mmal_util_rgb_order_fixed(MMAL_PORT_T *port) {}

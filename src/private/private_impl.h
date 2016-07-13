@@ -270,6 +270,8 @@ namespace raspicam {
             bool _isOpened;
             bool _isCapturing;
 
+            bool _rgb_bgr_fixed;
+
 
         };
     };

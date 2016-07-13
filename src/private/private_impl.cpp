@@ -251,6 +251,8 @@ namespace raspicam {
 
             video_port = camera->output[MMAL_CAMERA_VIDEO_PORT];
 
+            _rgb_bgr_fixed = !!(mmal_util_rgb_order_fixed(video_port));
+
             //  set up the camera configuration
 
             MMAL_PARAMETER_CAMERA_CONFIG_T cam_config;
@@ -748,9 +750,9 @@ namespace raspicam {
         int Private_Impl::convertFormat ( RASPICAM_FORMAT fmt ) {
             switch ( fmt ) {
             case RASPICAM_FORMAT_RGB:
-                return MMAL_ENCODING_BGR24;
+                return _rgb_bgr_fixed ? MMAL_ENCODING_RGB24 : MMAL_ENCODING_BGR24;
             case RASPICAM_FORMAT_BGR:
-                return MMAL_ENCODING_RGB24;
+                return _rgb_bgr_fixed ? MMAL_ENCODING_BGR24 : MMAL_ENCODING_RGB24;
             case RASPICAM_FORMAT_GRAY:
                 return MMAL_ENCODING_I420;
             case RASPICAM_FORMAT_YUV420:
